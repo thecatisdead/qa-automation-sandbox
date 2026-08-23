@@ -1,5 +1,12 @@
 import pytest
 import requests
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+api_key = os.getenv("REQRES_API_KEY")
 
 
 @pytest.mark.parametrize(
@@ -14,7 +21,7 @@ def test_user_status_codes(name, job, expected_status):
 
     url = "https://reqres.in/api/users/2"
 
-    headers = {"x-api-key": ""}
+    headers = {"x-api-key": api_key}
 
     response = requests.patch(url, json=payload, headers=headers)
 
