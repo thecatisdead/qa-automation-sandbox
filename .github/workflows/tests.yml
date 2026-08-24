@@ -24,4 +24,6 @@ jobs:
 
       - name: Run tests
         working-directory: swag_labs_ui
+        env:
+          PYTHONPATH: .
         run: pytest
