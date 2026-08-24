@@ -23,4 +23,5 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run tests
+        working-directory: reqres-api/swag_labs_ui
         run: pytest
