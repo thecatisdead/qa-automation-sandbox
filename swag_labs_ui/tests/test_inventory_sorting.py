@@ -13,12 +13,9 @@ from pages.inventory_page import InventoryPage
         ("hilo", True),
     ],
 )
-def test_user_sorting(page: Page, sort_option, reverse):
-    login_page = LoginPage(page)
+def test_user_sorting(page: Page, sort_option, logged_in, reverse):
+    inventory_page = logged_in
     inventory_page = InventoryPage(page)
-
-    login_page.navigate()
-    login_page.login("standard_user", "secret_sauce")
 
     inventory_page.sort_by(sort_option)
 
