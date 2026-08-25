@@ -10,6 +10,8 @@ class InventoryPage:
         )
         self.cart_badge = page.locator("[data-test='shopping-cart-badge']")
 
+        self.sort_dropdown = page.locator(".product_sort_container")
+
     def verify_on_inventory_page(self):
         expect(self.page).to_have_url("https://www.saucedemo.com/inventory.html")
         expect(self.title_heading).to_have_text("Products")
@@ -22,3 +24,18 @@ class InventoryPage:
 
     def go_to_cart(self):
         self.page.locator(".shopping_cart_link").click()
+
+    def sort_by(self, option: str):
+        self.sort_dropdown.select_option(option)
+
+    def get_product_names(self):
+        return self.page.locator(
+            "[data-test='inventory-item-name']"
+        ).all_text_contents()
+
+    def get_product_prices(self):
+        prices = self.page.locator(
+            "[data-test='inventory-item-price']"
+        ).all_text_contents()
+
+        return [float(price.replace("$", "")) for price in prices]
