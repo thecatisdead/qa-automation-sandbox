@@ -20,3 +20,6 @@ def test_user_can_login_and_add_item_to_cart(page: Page, logged_in):
     checkout_page.complete_checkout()
 
     checkout_page.verify_order_success()
+
+    checkout_page.back_home_button.click()
+    inventory_page.logout()
