@@ -15,7 +15,6 @@ from pages.inventory_page import InventoryPage
 )
 def test_user_sorting(page: Page, sort_option, logged_in, reverse):
     inventory_page = logged_in
-    inventory_page = InventoryPage(page)
 
     inventory_page.sort_by(sort_option)
 

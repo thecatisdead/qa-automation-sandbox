@@ -11,6 +11,8 @@ class CheckoutPage:
         self.finish_button = page.get_by_role("button", name="Finish")
         self.success_message = page.locator("[data-test='complete-header']")
         self.error_message = page.locator('[data-test="error"]')
+        self.cancel_checkout_button = page.locator("[data-test='cancel']")
+        self.back_home_button = page.locator("[data-test='back-to-products']")
 
     def fill_shipping_info(self, first_name: str, last_name: str, postal_code: str):
         self.first_name_input.fill(first_name)
@@ -24,8 +26,14 @@ class CheckoutPage:
     def complete_checkout(self):
         self.finish_button.click()
 
+    def cancel_checkout(self):
+        self.cancel_checkout_button.click()
+
     def verify_order_success(self):
         expect(self.success_message).to_have_text("Thank you for your order!")
+
+    def back_home(self):
+        self.back_home_button.click()
 
     # failed path
     def verify_error_message(self, expected_text: str):
