@@ -13,13 +13,14 @@ def test_user_can_login_and_add_item_to_cart(page: Page, logged_in):
     inventory_page.verify_on_inventory_page()
     inventory_page.add_first_item_to_cart()
     inventory_page.go_to_cart()
+    cart_page.verify_backpack_in_cart()
 
-    cart_page.checkout_button.click()
+    cart_page.checkout()
 
     checkout_page.fill_shipping_info("Johnny", "Bravo", "3987")
     checkout_page.complete_checkout()
 
     checkout_page.verify_order_success()
 
-    checkout_page.back_home_button.click()
+    checkout_page.back_home()
     inventory_page.logout()
