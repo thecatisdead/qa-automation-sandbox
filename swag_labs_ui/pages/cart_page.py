@@ -14,6 +14,10 @@ class CartPage:
             has_text="Sauce Labs Backpack"
         )
 
+        self.backpack_item2 = page.locator("[data-test='inventory-item']").filter(
+            has_text="Sauce Labs Bike Light"
+        )
+
     def continue_shopping(self):
         self.continue_shopping_button.click()
 
@@ -25,3 +29,9 @@ class CartPage:
 
     def verify_backpack_in_cart(self):
         expect(self.backpack_item).to_be_visible()
+
+    def verify_backpack_in_cart_item2(self):
+        expect(self.backpack_item2).to_be_visible()
+
+    def verify_backpack_not_in_cart(self):
+        expect(self.backpack_item).not_to_be_visible()
