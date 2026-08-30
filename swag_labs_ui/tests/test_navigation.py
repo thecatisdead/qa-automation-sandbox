@@ -21,17 +21,20 @@ def test_user_can_return_to_catalog_from_cart_and_add_more_items(page: Page, log
 
     inventory_page.go_to_cart()
 
-    cart_page.verify_backpack_in_cart_item2()
+    cart_page.verify_bike_in_cart()
 
 
 def test_user_can_view_product_details_and_add_to_cart(page: Page, logged_in):
     inventory_page = logged_in
+    cart_page = CartPage(page)
 
     inventory_page.view_item_description()
     inventory_page.add_item_from_description()
 
     inventory_page.back_to_inventory()
     inventory_page.go_to_cart()
+
+    cart_page.verify_backpack_in_cart()
 
 
 def test_user_can_cancel_checkout_and_remove_items(page: Page, logged_in):
@@ -50,6 +53,7 @@ def test_user_can_cancel_checkout_and_remove_items(page: Page, logged_in):
 
     checkout_page.cancel_checkout()
     inventory_page.go_to_cart()
+    cart_page.verify_on_cart_page()
 
     cart_page.remove_item_from_cart()
     cart_page.verify_backpack_not_in_cart()
