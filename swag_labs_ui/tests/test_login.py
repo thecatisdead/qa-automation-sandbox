@@ -18,4 +18,4 @@ def test_different_users_can_login(username, page: Page):
     login_page.navigate()
     login_page.login(username, "secret_sauce")
 
-    print(f"Successfully logged in as: {username}")
+    login_page.verify_login_successful()
