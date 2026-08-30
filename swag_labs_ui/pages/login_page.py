@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class LoginPage:
@@ -16,3 +16,6 @@ class LoginPage:
         self.username_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()
+
+    def verify_login_successful(self):
+        expect(self.page).to_have_url("https://www.saucedemo.com/inventory.html")
